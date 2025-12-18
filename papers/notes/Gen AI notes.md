@@ -4617,26 +4617,112 @@ We Chose : A survey based on the number of citations -->  multi agents mentioned
 
 
 
-# What the teacher asked from us 
+
+# Final justification 
+
+| Framework / Variant                           | Benchmark / Env                        | Metric                            | Educational Analogue                               | Observed Performance                                              | Notes                                                       |
+| --------------------------------------------- | -------------------------------------- | --------------------------------- | -------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- |
+| **PentestGPT-GPT-4**                          | HackTheBox, picoMini                   | Overall completion                | Learning objective completion                      | Easy: 6/6, Medium: 2/2, Hard: 0/0                                 | Structured reasoning; limited domain transfer               |
+|                                               |                                        | Sub-task completion               | Multi-step plan execution                          | Easy: 69, Medium: 57, Hard: 12                                    | Strong task decomposition                                   |
+| **RoCo Dialectic**                            | TDW-MAT / C-WAH                        | Transport Rate / Steps            | Plan efficiency & adaptivity                       | TR: 0.71–0.85, Steps reduced 33–49%                               | Improves multi-agent coordination and feedback loops        |
+| **CoELA**                                     | TDW-MAT / C-WAH / Human-AI             | TR / Steps / Trust                | Plan success, execution efficiency, learner trust  | TR: 0.70–0.85, Steps: −33–49%, Trust: 6.3/7                       | Memory + planning + XAI; human-centered                     |
+| **ProtAgents**                                | Protein Design                         | Sub-task completion / correctness | Complex multi-step content generation & validation | 80–100% planned-step success                                      | Critic agent ensures reliability                            |
+| **S3**                                        | Demographic & Emotion Prediction       | Accuracy / MSE / realism          | Learner modeling & engagement prediction           | Acc: 0.71, MSE: 128, MAE: 7.53                                    | Population-level engagement modeling                        |
+| **CGMI**                                      | FIAS / Classroom Simulation            | Interaction behaviors             | Adaptive learning path planning                    | Persona-aware agents outperform random                            | Reflective, role-based adaptation                           |
+| **Homo Silicus**                              | Behavioral Economics Tasks             | Pattern similarity                | Bias-aware recommendation evaluation               | High alignment with human experiments                             | Controlled trust & bias testing                             |
+| **EduPlanner (Full Framework)**               | CIDDP (LLM-based Instructional Design) | Multi-dimensional quality score   | Instructional quality & personalization            | Outperforms baseline and standalone LLMs across all CIDDP metrics | Analyst + Skill-Tree critical for practicality & pertinence |
+|                                               |                                        | Re-plan / Feedback                | Iterative instructional refinement                 | Smooth optimization curves with evaluator feedback                | Adversarial optimization loop                               |
+|                                               |                                        | Sub-task completion               | Lesson structure completeness                      | High integrity & depth across modules                             | Explicit pedagogical structure                              |
+| **RL-based Adaptive e-Learning (Q-Learning)** | Learning Object Navigation             | Optimal path discovery            | Personalized learning path generation              | Optimal paths learned (e.g., 0→1→2→4→5)                           | Reward-driven personalization                               |
+|                                               |                                        | Efficiency / Steps                | Reduced redundant interactions                     | Shorter paths from any starting LO                                | Learner can start at any point                              |
+|                                               |                                        | Re-plan / Feedback                | Policy adaptation                                  | Q-values adapt to learner profile                                 | No linguistic explanations                                  |
+| **DMAPSO (Multi-Agent PSO)**                  | Clustering, Matching, Adaptation       | Fitness / Error rate              | Quality of recommendations & grouping              | Clustering error: 0.2–3.4%                                        | Explicit optimization objectives                            |
+|                                               |                                        | Efficiency / Steps                | Computational efficiency                           | Near-optimal matching with low runtime                            | Scales better than exhaustive search                        |
+|                                               |                                        | Re-plan / Feedback                | Dynamic adaptation                                 | Best performance in non-stationary environments                   | Structural (implicit) explainability                        |
+|                                               |                                        | Human Trust (implicit)            | Stability & predictability                         | Lowest variance & stable convergence                              | Proto-XAI via fitness transparency                          |
 
 
-> La solution proposée devra inclure des **figures accompagnées d’explications** mettant en évidence :
+ ## Rationale for Paper Selection
 
-> > – l’**architecture générale basée sur des agents**,
-> 
-> > – le **pipeline LLM**,
-> 
-> > – ainsi que les **outils utilisés**, intégrés dans l’explication.
+Based on the comparative benchmark analysis, the selected papers are not overlapping in scope or contribution. Instead, they address **different but complementary aspects** of adaptive e-learning systems, ranging from optimization and personalization to explainability and instructional design. Taken together, they provide a coherent and well-justified foundation for designing a modern, intelligent e-learning architecture.
 
-> Aussi, vous présentez les **choix retenus** pour les parties **LLM** et **explicabilité (XAI), ces choix** devront être **justifiés** notamment à l’aide d’un **tableau comparatif** et de **références bibliographiques**.
-> 
-> **Aucun code n’est demandé pour cette phase de validation** ; le développement sera abordé **après les vacances**.  
-> 
-> La **forme de présentation** de ces éléments n’est pas imposée : vous êtes libres d’opter pour un **brouillon d’article**, une **présentation**, ou tout autre format pertinent.
-> 
-> Ces livrables doivent être déposés dans l'espace dédié dans le classroom.
+---
 
+### 1. DMAPSO (2018): Optimization Backbone and Dynamic Adaptation
 
+**Reference:** [1] _Optimizing Dynamic Multi-Agent Performance in E-Learning Environment_
 
- 
+The DMAPSO framework is included primarily for its strong optimization and adaptation capabilities. As shown in the benchmark table, it achieves very low clustering error rates (0.2–3.4%), near-optimal matching performance with low computational cost, and stable convergence in dynamic, non-stationary environments. These characteristics are particularly important in large-scale e-learning systems where learner profiles and resource availability evolve over time.
 
+Unlike LLM-based approaches, DMAPSO provides **mathematically grounded optimization guarantees** and explicit fitness functions. This makes system behavior traceable and predictable, which implicitly contributes to user trust. For these reasons, DMAPSO is well suited to serve as the **structural and optimization backbone** of the proposed system.
+
+---
+
+### 2. RL-Based Adaptive E-Learning (2021): Sequential Personalization
+
+**Reference:** [3] _Design of an Adaptive e-Learning System based on Multi-Agent Approach and Reinforcement Learning_
+
+The reinforcement learning–based multi-agent system complements DMAPSO by addressing personalization at a finer granularity. The benchmark results demonstrate that Q-learning successfully identifies optimal learning paths (e.g., 0→1→2→4→5), reduces unnecessary interactions, and adapts to learners starting from different learning objects.
+
+This approach is particularly effective for **step-by-step navigation and sequencing**, as it relies on an explicit state–action–reward formulation. However, it lacks linguistic explanations and deeper pedagogical semantics. Consequently, its contribution is best understood as **micro-level personalization**, rather than global optimization or instructional reasoning.
+
+---
+
+### 3. Complementarity of DMAPSO and Reinforcement Learning
+
+The benchmark table highlights a clear division of strengths between DMAPSO and RL-based approaches. DMAPSO excels at global clustering, matching, and stability, while reinforcement learning is more effective for local, sequential decision-making. Combining both allows the system to support **macro-level adaptation** (population-wide optimization) and **micro-level adaptation** (individual learning paths). This justifies the inclusion of both approaches rather than selecting one over the other.
+
+---
+
+### 4. CoELA (2023): Reasoning, Trust, and Explainability
+
+**Reference:** [4] _Building Cooperative Embodied Agents Modularly with Large Language Models_
+
+CoELA is included for its emphasis on reasoning, explainability, and human-aligned decision-making. According to the benchmark results, it achieves high task success rates (0.70–0.85), significant reductions in execution steps (33–49%), and strong human trust scores (6.3/7). These results are attributed to its use of memory, planning, and explicit reasoning mechanisms.
+
+CoELA addresses limitations found in optimization- and RL-based systems by introducing **interpretable multi-agent cooperation**. It therefore plays a key role in bridging the gap between algorithmic efficiency and user-facing transparency, justifying the use of LLMs as cognitive agents rather than opaque black boxes.
+
+---
+
+### 5. EduPlanner (2024): Instructional Quality and Pedagogical Depth
+
+**Reference:** [5] _EduPlanner: LLM-Based Multi-Agent Systems for Customized Instructional Design_
+
+EduPlanner is distinct from the other systems in that it directly optimizes instructional design quality. Using the CIDDP evaluation framework, it explicitly targets clarity, integrity, depth, practicality, and pertinence. Benchmark results show that it outperforms both standalone LLMs and simpler baselines, while maintaining smooth improvement through adversarial feedback between agents.
+
+Where most systems focus on selecting or sequencing content, EduPlanner focuses on **how content should be taught**. This makes it particularly valuable for grounding the system in educational theory rather than purely technical performance.
+
+---
+
+### 6. Modular LLM + RAG Architecture (2025): System Integration
+
+**Reference:** [2] _A Modular Multi-Agent Architecture for Hybrid Educational Recommendation Systems Integrating RAG and LLMs_
+
+This paper is included for architectural and practical reasons. It introduces modularity, retrieval-augmented grounding, and deployment-oriented design. These elements ensure that LLM outputs are fact-based, agents can be independently updated or replaced, and the overall system remains scalable.
+
+As such, this work serves as the **integration layer** that connects optimization, learning, and reasoning components into a deployable system.
+
+---
+
+### 7. Explainable LLM-Based Recommendations (2023): User Trust
+
+**Reference:** [6] _Improving Course Recommendation Systems with Explainable AI_
+
+Finally, this paper explicitly addresses explainability and user trust in educational recommendation systems. While trust emerges implicitly in systems such as DMAPSO (through stability) and CoELA (through reasoning), this work formalizes **user-facing explanations** and evaluation of explainability.
+
+Its inclusion ensures that the proposed system is not only effective, but also **auditable, transparent, and acceptable** from a user perspective.
+
+---
+
+### Overall Justification
+
+Each selected paper contributes a distinct and necessary layer:
+
+| System Layer                      | Representative Work                  |
+| --------------------------------- | ------------------------------------ |
+| Global optimization and stability | DMAPSO                               |
+| Sequential personalization        | RL-based MAS                         |
+| Reasoning and explainability      | CoELA                                |
+| Instructional design quality      | EduPlanner                           |
+| Modular deployment and grounding  | LLM + RAG architecture               |
+| User trust and transparency       | Explainable recommendation framework |
