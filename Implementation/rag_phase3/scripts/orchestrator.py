@@ -26,7 +26,7 @@ class Orchestrator:
         state = {
             "learner_id": learner_id,
             "plan_history": [],
-            "reward": -0.95,          
+            "reward": 0,          
             "step": 0,
             "backtrack_count": 0
         }

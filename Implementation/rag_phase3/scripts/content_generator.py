@@ -54,12 +54,36 @@ def generate_content(next_concept, profile):
 
     if not retrieved_texts:
         retrieved_texts = ["This is a default explanation placeholder."]
+    
+    # ===============================
+    # ✅ FIX 1: CLEAN RETRIEVED TEXTS
+    # ===============================
+    cleaned_texts = []
+    for txt in retrieved_texts:
+        lines = txt.splitlines()
+        lines = [
+            l for l in lines
+            if l.strip().lower() not in ("foreword", "introduction")
+        ]
+        cleaned_texts.append("\n".join(lines).strip())
 
+    retrieved_texts = [t for t in cleaned_texts if t]
     # Build Qwen chat-style messages
     prefs = profile["preferences"]
 
     messages = [
-        {"role": "system", "content": "You are an educational tutor, helpful and concise."},
+        {
+    "role": "system",
+    "content": (
+        "You are an educational tutor.\n"
+        "- Do NOT repeat headings or words.\n"
+        "- Do NOT write 'Foreword' or generic headers.\n"
+        "- Produce a single, coherent explanation.\n"
+        "- Avoid repetition.\n"
+        "- Start directly with content."
+    )
+}
+,
         {"role": "user", "content": (
             f"Create a {prefs['difficulty']} level, {prefs['modality']} explanation "
             f"with {prefs['verbosity']} verbosity "

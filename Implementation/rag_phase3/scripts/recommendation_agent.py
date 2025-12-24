@@ -12,7 +12,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 sys.path.insert(0, PROJECT_ROOT)
 from config import DB_CONFIG
 
-ALPHA = -1
+ALPHA = -0.8
 BETA = 0.3
 model = SentenceTransformer("all-MiniLM-L6-v2")
 index = faiss.read_index("faiss/index.faiss")
